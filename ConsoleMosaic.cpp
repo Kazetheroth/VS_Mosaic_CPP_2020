@@ -2,22 +2,23 @@
 //
 
 #include <iostream>
-#include <array>
 #include "ImgLoader.h"
 
 int main()
 {
     std::cout << "Wesh Morray\n";
 	ImgLoader* img = new ImgLoader();
-	int widthImg = (int)img->Load("dems.jpg")->Width;
-	int heightImg = (int)img->Load("dems.jpg")->Height;
-	int nbCompImg = (int)img->Load("dems.jpg")->NumComponent;
-	int* pixels = NULL;
-	pixels = (int*) malloc((sizeof(int) * nbCompImg) * widthImg * heightImg);
+    const int widthImg = static_cast<int>(img->Load("dems.jpg")->Width);
+    const int heightImg = static_cast<int>(img->Load("dems.jpg")->Height);
+    const int nbCompImg = static_cast<int>(img->Load("dems.jpg")->NumComponent);
+	int* pixels = nullptr;
+	pixels = static_cast<int*>(malloc((sizeof(int) * nbCompImg) * widthImg * heightImg));
 	for(int i = 0; i < widthImg * heightImg * nbCompImg; i++)
 	{
-		pixels[i] = (int)img->Load("dems.jpg")->Data[i];
+		pixels[i] = static_cast<int>(img->Load("dems.jpg")->Data[i]);
 	}
+
+	//ImageWriter::ImageWriter();
 	
 	std::cout << "Bam!";
 	std::cout << pixels;
